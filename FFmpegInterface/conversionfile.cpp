@@ -21,8 +21,7 @@ void ConversionFile::initalSetup(QString f, QString outputD, QString VideoC, QSt
     outputDir = outputD;
     VideoCodec = VideoC;
     AudioCodec = AudioC;
-    outputFile = file;
-    outputFile = outputFile.remove(0, outputFile.lastIndexOf(QDir::separator()) + 1);
+    outputFile = file.remove(0, file.lastIndexOf(QDir::separator()) + 1);
     outputFile.chop(outputFile.length() - outputFile.lastIndexOf("."));
     outputFile += extension;
 }

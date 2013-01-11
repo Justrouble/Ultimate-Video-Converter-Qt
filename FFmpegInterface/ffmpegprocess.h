@@ -14,10 +14,6 @@ public:
     FFmpegProcess(){}
     ~FFmpegProcess(){}
 
-    void setDuration(QString duration);
-    void setRawLine(QString rawLine);
-    void setStatus(QString status);
-
     QString duration();
     QString rawLine();
     QString status();
@@ -34,6 +30,10 @@ private:
     QString m_status;
 
     int tableRow;
+
+    void setDuration(QString duration);
+    void setRawLine(QString rawLine);
+    void setStatus(QString status);
 
     void processRawData(QString *const line);
     void processDuration(QString *const line);
