@@ -1,0 +1,41 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.pcb
+*.pdb
+
+# Compiled Dynamic libraries
+*.so*
+*.dll
+*.exe
+*.lib
+UltimateVideoConverter/UltimateVideoConverter
+UltimateVideoConverter/ultimatevideoconverter
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Environment and autosave files
+*.user
+*.autosave
+*.ilk
+*.manifest
+
+# Makefiles
+Makefile
+Makefile.Debug
+Makefile.Release
+
+# Moc files
+moc_*.cpp
+*.moc
+
+# UI temp headers
+ui_*.h
+
+# InstallShield
+*.iss
