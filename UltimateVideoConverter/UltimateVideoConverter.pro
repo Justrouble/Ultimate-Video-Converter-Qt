@@ -10,25 +10,31 @@ TARGET    = ultimatevideoconverter
 TEMPLATE  = app
 
 
-SOURCES  += main.cpp\
+SOURCES  += main.cpp \
             mainwindow.cpp \
-            addfile.cpp \
-    uvcconversiontab.cpp
+            dialogs/addfile.cpp \
+            uicomponents/uvcconversiontab.cpp
 
 HEADERS  += mainwindow.h \
-            addfile.h \
-            uvctabwidget.h \
-    uvctablewidget.h \
-    uvcconversiontab.h
+            dialogs/addfile.h \
+            uicomponents/uvctabwidget.h \
+            uicomponents/uvctablewidget.h \
+            uicomponents/uvcconversiontab.h
 
 FORMS    += mainwindow.ui \
-            addfile.ui
+            dialogs/addfile.ui
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../FFmpegInterface/release/ -lFFmpegInterface
+win32:CONFIG(release, debug|release):    LIBS += -L$$OUT_PWD/../FFmpegInterface/release/ -lFFmpegInterface
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../FFmpegInterface/debug/ -lFFmpegInterface
-else:unix:!macx: LIBS += -L$$OUT_PWD/../FFmpegInterface/ -lFFmpegInterface
+else:unix:!macx:                         LIBS += -L$$OUT_PWD/../FFmpegInterface/ -lFFmpegInterface
 
-INCLUDEPATH += $$PWD/../FFmpegInterface
-DEPENDPATH += $$PWD/../FFmpegInterface
+INCLUDEPATH    += $$PWD/../FFmpegInterface
+DEPENDPATH     += $$PWD/../FFmpegInterface
+INCLUDEPATH    += $$PWD/dialogs
+DEPENDPATH     += $$PWD/dialogs
+INCLUDEPATH    += $$PWD/uicomponents
+DEPENDPATH     += $$PWD/uicomponents
+INCLUDEPATH    += $$PWD/uicomponents/comboboxes
+DEPENDPATH     += $$PWD/uicomponents/comboboxes
 
 QMAKE_CXXFLAGS += -std=c++11 -std=c++0x

@@ -12,7 +12,7 @@ class ConversionFile : public FFmpegProcess
     Q_OBJECT
 
 public:
-    ConversionFile(){}
+    explicit ConversionFile(){}
     ~ConversionFile(){}
 
     void convert();

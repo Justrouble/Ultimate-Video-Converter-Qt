@@ -17,7 +17,7 @@ class UVCConversionTab : public QTabWidget
     Q_OBJECT
 
 public:
-    UVCConversionTab(ConversionFile *cf);
+    explicit UVCConversionTab(ConversionFile *cf);
     ~UVCConversionTab();
     ConversionFile *cfile;
 

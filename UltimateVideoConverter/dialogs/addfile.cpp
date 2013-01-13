@@ -1,9 +1,7 @@
 #include "addfile.h"
 #include "ui_addfile.h"
 
-AddFile::AddFile(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::AddFile)
+AddFile::AddFile(QWidget *parent) : QDialog(parent), ui(new Ui::AddFile)
 {
     cf = new ConversionFile();
 

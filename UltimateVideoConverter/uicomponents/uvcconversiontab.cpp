@@ -1,10 +1,10 @@
 #include "uvcconversiontab.h"
 
-UVCConversionTab::UVCConversionTab(ConversionFile *cf)
+UVCConversionTab::UVCConversionTab(ConversionFile *cf) : QTabWidget()
 {
     cfile = cf;
     if (!(cfile->status() == "Finished"))
-        connect(cfile, SIGNAL(lineRead(QString)), this, SLOT(outputCommand(QString)));
+        connect(cfile, &ConversionFile::lineRead, this, &UVCConversionTab::outputCommand);
     setupUi();
 }
 

@@ -10,7 +10,7 @@ class UVCTableWidget : public QTableWidget
     Q_OBJECT
 
 public:
-    explicit UVCTableWidget(QWidget *parent = 0){parent++;}
+    explicit UVCTableWidget(QWidget *parent = 0) : QTableWidget(parent){}
     ~UVCTableWidget(){}
 
     void initalSetup(ConversionFile *cf)
@@ -35,21 +35,28 @@ public:
     }
 
 private slots:
-    void setDuration(QString duration, int tableRow)
+    void setStatus(QString status, int tableRow)
     {
-        setItem(duration, tableRow, 2);
+        setItem(status, tableRow, statusColumn);
     }
 
-    void setStatus(QString duration, int tableRow)
+    void setDuration(QString duration, int tableRow)
     {
-        setItem(duration, tableRow, 1);
+        setItem(duration, tableRow, durationColumn);
     }
 
 private:
-    void connectFFMpegAndTableWidget(ConversionFile* cfile)
+    void connectFFMpegAndTableWidget(ConversionFile *cfile)
     {
-        connect(cfile, SIGNAL(durationChanged(QString, int)), this, SLOT(setDuration(QString, int)));
+        connect(cfile, &ConversionFile::statusChanged, this, &UVCTableWidget::setStatus);
+        connect(cfile, &ConversionFile::durationChanged, this, &UVCTableWidget::setDuration);
     }
+
+    enum tableColumn
+    {
+        statusColumn = 0,
+        durationColumn = 1
+    };
 };
 
 

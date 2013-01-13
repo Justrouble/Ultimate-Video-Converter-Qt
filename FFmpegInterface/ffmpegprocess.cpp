@@ -5,8 +5,8 @@
 void FFmpegProcess::startFFmpeg()
 {
     start("ffmpeg", ffmpegArgs);
-    connect(this, SIGNAL(readyReadStandardError()), this, SLOT(readFFmpegLine()));
-    connect(this, SIGNAL(readyReadStandardOutput()), this, SLOT(readFFmpegLine()));
+    connect(this, &FFmpegProcess::readyReadStandardError, this, &FFmpegProcess::readFFmpegLine);
+    connect(this, &FFmpegProcess::readyReadStandardOutput, this, &FFmpegProcess::readFFmpegLine);
     //TO-DO
     //connect(this, SIGNAL(finished(int)), this, SLOT(processFinished(int)));
     setDuration("Processing");

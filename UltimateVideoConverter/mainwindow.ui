@@ -75,7 +75,7 @@
   <customwidget>
    <class>UVCTabWidget</class>
    <extends>QTabWidget</extends>
-   <header>uvctabwidget.h</header>
+   <header>uicomponents/uvctabwidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

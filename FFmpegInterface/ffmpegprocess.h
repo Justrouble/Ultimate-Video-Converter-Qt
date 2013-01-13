@@ -11,7 +11,7 @@ class FFmpegProcess : public QProcess
 
     Q_OBJECT
 public:
-    FFmpegProcess(){}
+    explicit FFmpegProcess(){}
     ~FFmpegProcess(){}
 
     QString duration();
