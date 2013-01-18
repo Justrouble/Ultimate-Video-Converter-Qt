@@ -12,8 +12,8 @@ class ConversionFile : public FFmpegProcess
     Q_OBJECT
 
 public:
-    explicit ConversionFile(){}
-    ~ConversionFile(){}
+    explicit ConversionFile() { }
+    ~ConversionFile() { }
 
     void convert();
 

@@ -2,21 +2,22 @@
 #define FFMPEGPROCESS_H
 
 #include <QProcess>
+#include <QDebug>
 
 class FFmpegProcess : public QProcess
 {
-    Q_PROPERTY(QString duration READ duration WRITE setDuration NOTIFY durationChanged)
-    Q_PROPERTY(QString rawLine READ rawLine WRITE setRawLine NOTIFY lineRead)
-    Q_PROPERTY(QString status READ status WRITE setStatus NOTIFY statusChanged)
+    Q_PROPERTY(QString duration WRITE setDuration NOTIFY durationChanged)
+    Q_PROPERTY(QString rawLine WRITE setRawLine NOTIFY lineRead)
+    Q_PROPERTY(QString status WRITE setStatus NOTIFY statusChanged)
 
     Q_OBJECT
 public:
     explicit FFmpegProcess(){}
     ~FFmpegProcess(){}
 
-    QString duration();
-    QString rawLine();
-    QString status();
+    QString duration;
+    QString rawLine;
+    QString status;
 
     QString buffer;
 
@@ -25,10 +26,6 @@ protected:
     QStringList ffmpegArgs;
 
 private:
-    QString m_duration;
-    QString m_rawline;
-    QString m_status;
-
     int tableRow;
 
     void setDuration(QString duration);

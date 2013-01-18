@@ -1,9 +1,6 @@
 #include "ffmpegprocess.h"
 
-#include <QDebug>
-
-void FFmpegProcess::startFFmpeg()
-{
+void FFmpegProcess::startFFmpeg() {
     start("ffmpeg", ffmpegArgs);
     connect(this, &FFmpegProcess::readyReadStandardError, this, &FFmpegProcess::readFFmpegLine);
     connect(this, &FFmpegProcess::readyReadStandardOutput, this, &FFmpegProcess::readFFmpegLine);
@@ -14,57 +11,38 @@ void FFmpegProcess::startFFmpeg()
 }
 
 
-void FFmpegProcess::readFFmpegLine()
-{
+void FFmpegProcess::readFFmpegLine() {
     QString line = readAllStandardError();
     setRawLine(line);
     buffer += line;
     processRawData(&line);
 }
 
-void FFmpegProcess::processRawData(QString *const line)
-{
+void FFmpegProcess::processRawData(QString *const line) {
     if(line->contains("Duration: "))
+    {
         processDuration(line);
+    }
 }
 
-void FFmpegProcess::processDuration(QString *const line)
-{
+void FFmpegProcess::processDuration(QString *const line) {
     QString temp1 = *line;
     temp1 = temp1.mid(temp1.indexOf("Duration:") + 10);
     temp1 = temp1.left(temp1.indexOf(","));
     setDuration(temp1);
 }
 
-QString FFmpegProcess::duration()
-{
-    return m_duration;
+void FFmpegProcess::setStatus(QString tempstatus) {
+    status = tempstatus;
+    emit statusChanged(tempstatus, tableRow);
 }
 
-QString FFmpegProcess::rawLine()
-{
-    return m_rawline;
+void FFmpegProcess::setDuration(QString tempduration) {
+    duration = tempduration;
+    emit durationChanged(tempduration, tableRow);
 }
 
-QString FFmpegProcess::status()
-{
-    return m_status;
-}
-
-void FFmpegProcess::setStatus(QString status)
-{
-    m_status = status;
-    emit statusChanged(status, tableRow);
-}
-
-void FFmpegProcess::setDuration(QString duration)
-{
-    m_duration = duration;
-    emit durationChanged(duration, tableRow);
-}
-
-void FFmpegProcess::setRawLine(QString rawLine)
-{
-    m_rawline = rawLine;
-    emit lineRead(rawLine);
+void FFmpegProcess::setRawLine(QString temprawLine) {
+    rawLine = temprawLine;
+    emit lineRead(temprawLine);
 }

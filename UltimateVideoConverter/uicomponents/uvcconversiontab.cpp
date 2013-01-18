@@ -1,20 +1,18 @@
 #include "uvcconversiontab.h"
 
-UVCConversionTab::UVCConversionTab(ConversionFile *cf) : QTabWidget()
-{
+UVCConversionTab::UVCConversionTab(ConversionFile *cf) : QTabWidget() {
     cfile = cf;
-    if (!(cfile->status() == "Finished"))
+    if (!(cfile->status == "Finished")) {
         connect(cfile, &ConversionFile::lineRead, this, &UVCConversionTab::outputCommand);
+    }
     setupUi();
 }
 
-UVCConversionTab::~UVCConversionTab()
-{
+UVCConversionTab::~UVCConversionTab() {
     deleteUi();
 }
 
-void UVCConversionTab::setupUi()
-{
+void UVCConversionTab::setupUi() {
     txtOutput = new QTextEdit();
     mainLayout = new QGridLayout();
     txtOutput->setReadOnly(true);
@@ -23,13 +21,11 @@ void UVCConversionTab::setupUi()
     setLayout(mainLayout);
 }
 
-void UVCConversionTab::deleteUi()
-{
+void UVCConversionTab::deleteUi() {
     delete txtOutput;
     delete mainLayout;
 }
 
-void UVCConversionTab::outputCommand(QString cmdoutput)
-{
+void UVCConversionTab::outputCommand(QString cmdoutput) {
     txtOutput->append(cmdoutput);
 }

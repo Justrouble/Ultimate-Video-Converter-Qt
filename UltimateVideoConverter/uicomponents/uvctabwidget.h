@@ -9,14 +9,14 @@ class UVCTabWidget : public QTabWidget
     Q_OBJECT
 
 public:
-    explicit UVCTabWidget(QWidget *parent = 0) : QTabWidget(parent) {}
+    explicit UVCTabWidget(QWidget *parent = 0) : QTabWidget(parent) { }
     ~UVCTabWidget(){}
 
-    void addTab(QWidget *parent, QString title)
-    {
+    void addTab(QWidget *parent, QString title) {
         QTabWidget::addTab(parent, title);
-        if(count() == 1)
+        if(count() == 1) {
             tabBar()->setTabButton(0, QTabBar::RightSide, 0);
+        }
     }
 };
 

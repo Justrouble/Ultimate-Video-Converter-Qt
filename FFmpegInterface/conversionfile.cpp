@@ -1,7 +1,6 @@
 #include "conversionfile.h"
 
-void ConversionFile::convert()
-{
+void ConversionFile::convert() {
     ffmpegArgs << "-i" << file;
     ffmpegArgs << "-strict" << "experimental" << "-y";
     ffmpegArgs << "-vcodec" << VideoCodec;
@@ -10,13 +9,11 @@ void ConversionFile::convert()
     startFFmpeg();
 }
 
-inline QString ConversionFile::getFullOutputFile()
-{
+inline QString ConversionFile::getFullOutputFile() {
     return (outputDir + QDir::separator() + outputFile);
 }
 
-void ConversionFile::initalSetup(QString f, QString outputD, QString VideoC, QString AudioC)
-{
+void ConversionFile::initalSetup(QString f, QString outputD, QString VideoC, QString AudioC) {
     file = f;
     outputDir = outputD;
     VideoCodec = VideoC;
