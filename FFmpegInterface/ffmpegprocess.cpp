@@ -19,8 +19,7 @@ void FFmpegProcess::readFFmpegLine() {
 }
 
 void FFmpegProcess::processRawData(QString *const line) {
-    if(line->contains("Duration: "))
-    {
+    if(line->contains("Duration: ")) {
         processDuration(line);
     }
 }

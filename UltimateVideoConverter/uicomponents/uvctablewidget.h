@@ -10,25 +10,14 @@ class UVCTableWidget : public QTableWidget
     Q_OBJECT
 
 public:
-    explicit UVCTableWidget(QWidget *parent = 0) : QTableWidget(parent){ }
-    ~UVCTableWidget(){}
+    explicit UVCTableWidget(QWidget *parent = 0) : QTableWidget(parent) { }
+    ~UVCTableWidget() { }
 
     void initalSetup(ConversionFile *cf) {
         int count = rowCount();
         setRowCount(count + 1);
         setItem(cf->outputFile, count, 0);
         connectFFMpegAndTableWidget(cf);
-    }
-
-    inline void setItem(const QString stringToWrite, int row, int index) {
-        if (item(row, index) == 0x0) {
-            QTableWidgetItem *item = new QTableWidgetItem(stringToWrite);
-            item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-            QTableWidget::setItem(row, index, item);
-            resizeColumnsToContents();
-        } else {
-            item(row, index)->setText(stringToWrite);
-        }
     }
 
 private slots:
@@ -41,14 +30,24 @@ private slots:
     }
 
 private:
+    inline void setItem(const QString stringToWrite, int row, int index) {
+        if (item(row, index) == 0x0) {
+            QTableWidgetItem *item = new QTableWidgetItem(stringToWrite);
+            item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+            QTableWidget::setItem(row, index, item);
+            resizeColumnsToContents();
+        } else {
+            item(row, index)->setText(stringToWrite);
+        }
+    }
     void connectFFMpegAndTableWidget(ConversionFile *cfile) {
         connect(cfile, &ConversionFile::statusChanged, this, &UVCTableWidget::setStatus);
         connect(cfile, &ConversionFile::durationChanged, this, &UVCTableWidget::setDuration);
     }
 
     enum tableColumn {
-        statusColumn = 0,
-        durationColumn = 1
+        statusColumn = 1,
+        durationColumn = 2
     };
 };
 
